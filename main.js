@@ -34,17 +34,23 @@ $(document).ready(function () {
         //     }, 1400);
         // })
 
-        fetch(endpoint).then(function (resposta) {
-            return resposta.json()
-        })
+        fetch(endpoint)
+            .then(function (resposta) {
+                return resposta.json();
+            })
             .then(function (json) {
                 const logradouro = json.logradouro;
                 const bairro = json.bairro;
                 const cidade = json.localidade;
                 const estado = json.uf;
                 const endereco = `${logradouro}, ${bairro} - ${cidade} - ${estado} `;
+                $('#endereco').val(endereco);
+            })
+            .catch(function (erro) {
+                alert("Ocorreu um erro ao buscar o endereço, tente novamente mais tarde.")
+            })
+            .finally(function () {
                 setTimeout(function () {
-                    $('#endereco').val(endereco);
                     $(botao).find('i').removeClass('d-none');
                     $(botao).find('span').addClass('d-none');
                 }, 1400);
