@@ -56,4 +56,12 @@ $(document).ready(function () {
                 }, 1400);
             })
     })
+
+    $('#form-pedido').submit(function(evento){
+        evento.preventDefault();
+
+        if($('#nome').val().length == 0){
+            throw new Error(alert("Informe o seu nome."));
+        }
+    })
 })
